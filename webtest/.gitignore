@@ -6,6 +6,8 @@
 *.output
 *.report
 *.selenium-screenshot.png
+*.results
+*./results
 
 # BlueJ files
 *.ctxt

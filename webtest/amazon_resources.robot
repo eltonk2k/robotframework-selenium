@@ -1,5 +1,6 @@
 *** Settings ***
 Library    SeleniumLibrary
+Library    XML
 
 *** Variables ***
 ${BROWSER}    firefox
@@ -39,6 +40,18 @@ Clicar no botão de pesquisa
 Verificar o resultado da pesquisa se está listando o produto "${PRODUTO}"
     Wait Until Element Is Visible    locator=(//span[contains(.,'${PRODUTO}')])[3]
 
+Adicionar o produto "${CONSOLE}" no carrinho
+    Wait Until Element Is Visible    locator=//button[@id='a-autoid-1-announce']
+    Click Element    locator=//button[@id='a-autoid-1-announce']
+Verificar se o produto "${CONSOLE}" foi adicionado com sucesso
+    Wait Until Page Contains Element    locator=nav-cart-text-container
+    Click Element    locator=nav-cart-text-container
+    Element Should Be Visible    locator=//span[@class='a-truncate-cut'][contains(.,'${CONSOLE}')]
+Remover o produto "${CONSOLE}" do carrinho
+    Click Element    locator=//input[@value='Excluir']
+Verificar se o carrinho fica vazio
+    Wait Until Page Contains    text=Seu carrinho de compras da Amazon está vazio.
+
 #GHERKIN
 Dado que estou na home page da Amazon.com.br
     Acessar a home page do site Amazon.com.br
@@ -57,7 +70,16 @@ Então o título da página deve ficar "Amazon.com.br : Xbox Series S"
     Verificar se o título da página fica "Amazon.com.br : Xbox Series S"
 E um produto da linha "Xbox Series S" deve ser mostrado na página
     Verificar o resultado da pesquisa se está listando o produto "Console Xbox Series S"
-
+Quando adicionar o produto "Console Xbox Series S" no carrinho
+    Adicionar o produto "Console Xbox Series S" no carrinho
+Então o produto "Console Xbox Series S" deve ser mostrado no carrinho
+    Verificar se o produto "Console Xbox Series S" foi adicionado com sucesso
+E existe o produto "Console Xbox Series S" no carrinho
+    Verificar se o produto "Console Xbox Series S" foi adicionado com sucesso
+Quando remover o produto "Console Xbox Series S" do carrinho
+    Remover o produto "Console Xbox Series S" do carrinho
+Então o carrinho deve ficar vazio
+    Verificar se o carrinho fica vazio
 
 
 
