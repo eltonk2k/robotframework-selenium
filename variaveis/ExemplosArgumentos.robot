@@ -2,7 +2,7 @@
 Documentation   Exemplo de uso de variáveis como argumentos em Keywords
 
 *** Variable ***
-&{PESSOA}       nome=Www Pedro   email=www@exemplo.com.br   idade=28   sexo=masculino
+&{PESSOA}       nome=Www Pedro   email=www@exemplo.com.br   idade=12   sexo=masculino
 
 *** Test Cases ***
 Caso de teste de exemplo 01
