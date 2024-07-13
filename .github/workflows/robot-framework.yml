@@ -18,7 +18,7 @@ jobs:
           python-version: 3.x
 
       - name: Install dependencies
-        run: pip install -r path/to/requirements.txt
+        run: pip install --upgrade pip
 
       - name: Run Robot Framework tests
         run: robot path/to/tests
